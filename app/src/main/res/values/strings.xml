@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">hwArchDemo</string>
+    <string name="banned_user_title">This might have been a User: %1d post, but they were banned</string>
+    <string name="warned_user_title">Post by User: %1d | Has warning</string>
+    <string name="regular_user_title">Post by User: %1d</string>
+    <string name="post_title">Title: %1s</string>
+    <string name="post_body">Body: %1s</string>
+</resources>
