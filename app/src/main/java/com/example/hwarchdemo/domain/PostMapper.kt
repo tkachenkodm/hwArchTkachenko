@@ -1,8 +1,7 @@
 package com.example.hwarchdemo.domain
 
-import com.example.hwarchdemo.data.PostError
-import com.example.hwarchdemo.data.PostsWithUserInfo
-import com.example.hwarchdemo.shared.Result
+import com.example.hwarchdemo.data.Post
+import javax.inject.Inject
 
 enum class UserStatus {
     NONE,
@@ -10,18 +9,15 @@ enum class UserStatus {
     WARNED
 }
 
-class PostMapper {
-
-    fun map(postResult: Result<PostsWithUserInfo, PostError>): Result<List<PostModel>, PostError> {
-        return postResult.mapSuccess { postsData ->
-
-            postsData.posts.map { post ->
-                when(post.userId) {
-                    in postsData.warnedUsers -> PostModel(post.userId, post.title, post.body, UserStatus.WARNED)
-                    in postsData.bannedUsers -> PostModel(post.userId, post.title, post.body, UserStatus.BANNED)
-                    else -> PostModel(post.userId, post.title, post.body, UserStatus.NONE)
-                }
+class PostMapper @Inject constructor() {
+    fun map(postList: List<Post>?): List<PostModel> {
+        return if (!postList.isNullOrEmpty()) {
+            postList.map { post ->
+                PostModel(post.userId, post.id, post.title, post.body, UserStatus.NONE)
             }
+        } else {
+            emptyList()
         }
     }
+
 }

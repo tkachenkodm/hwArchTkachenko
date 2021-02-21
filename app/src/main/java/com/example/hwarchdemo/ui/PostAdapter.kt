@@ -1,14 +1,18 @@
-package com.example.hwarchdemo
+package com.example.hwarchdemo.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.PostBannedBinding
 import com.example.hwarchdemo.databinding.PostRegularBinding
 import com.example.hwarchdemo.presentation.*
 
-class PostAdapter(private val posts: List<PostUiModel>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostAdapter() :
+    ListAdapter<PostUiModel, RecyclerView.ViewHolder>(PostDiffUtils) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             POST_BANNED_ITEM_TYPE -> {
@@ -26,18 +30,20 @@ class PostAdapter(private val posts: List<PostUiModel>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is PostBannedViewHolder -> holder.bind(posts[position] as PostBanned)
-            is PostRegularViewHolder -> holder.bind(posts[position] as PostRegular)
+            is PostBannedViewHolder -> holder.bind(getItem(position) as PostBanned)
+            is PostRegularViewHolder -> holder.bind(getItem(position) as PostRegular)
         }
     }
 
-    override fun getItemCount(): Int = posts.size
-
     override fun getItemViewType(position: Int): Int {
-        return when (posts[position]) {
+        return when (getItem(position)) {
             is PostBanned -> POST_BANNED_ITEM_TYPE
-            else -> POST_REGULAR_ITEM_TYPE
+            is PostRegular -> POST_REGULAR_ITEM_TYPE
         }
+    }
+
+    fun updateList(newList: List<PostUiModel>) {
+        submitList(newList)
     }
 
     companion object {
@@ -49,22 +55,24 @@ class PostAdapter(private val posts: List<PostUiModel>) :
 class PostBannedViewHolder(private val binding: PostBannedBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(post: PostBanned) {
-        binding.tvTitle.text = itemView.resources.getString(R.string.banned_user_title, post.userId)
+        binding.bannedPost = post
     }
 }
 
 class PostRegularViewHolder(private val binding: PostRegularBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(post: PostRegular) {
-        binding.tvTitle.text = itemView.resources.getString(R.string.post_title, post.title)
-        binding.tvBody.text = itemView.resources.getString(R.string.post_body, post.body)
-
-        if(post.hasWarning == UserWarning.HAS_WARNING) {
-            binding.tvUserId.text = itemView.resources.getString(R.string.warned_user_title, post.userId)
-            binding.root.setCardBackgroundColor(itemView.context.getColorStateList(R.color.post_warned_color))
-        } else {
-            binding.tvUserId.text = itemView.resources.getString(R.string.regular_user_title, post.userId)
-            binding.root.setCardBackgroundColor(itemView.context.getColorStateList(R.color.white))
-        }
+        binding.regularPost = post
     }
+}
+
+object PostDiffUtils : DiffUtil.ItemCallback<PostUiModel>() {
+    override fun areItemsTheSame(oldPost: PostUiModel, newPost: PostUiModel): Boolean {
+        return oldPost.id == newPost.id
+    }
+
+    override fun areContentsTheSame(oldPost: PostUiModel, newPost: PostUiModel): Boolean {
+        return oldPost == newPost
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.example.hwarchdemo.data
 
-class UserInfoRepository() {
+import javax.inject.Inject
+
+class UserInfoRepository @Inject constructor() {
     fun getBannedUsers(): List<Int> {
         return listOf(7)
     }

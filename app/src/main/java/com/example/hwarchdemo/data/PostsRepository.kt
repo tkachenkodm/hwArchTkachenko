@@ -2,37 +2,37 @@ package com.example.hwarchdemo.data
 
 import com.example.hwarchdemo.domain.PostMapper
 import com.example.hwarchdemo.domain.PostModel
-import com.example.hwarchdemo.shared.AsyncOperation
-import com.example.hwarchdemo.shared.MultiThreading
-import com.example.hwarchdemo.shared.PostsService
-import com.example.hwarchdemo.shared.Result
+import javax.inject.Inject
 
-enum class PostError {
-    POSTS_NOT_LOADED
-}
-
-class PostsRepository(
-    private val multithreading: MultiThreading,
+class PostsRepository @Inject constructor(
+    private val postListDao: PostListDao,
     private val postsService: PostsService,
     private val postMapper: PostMapper
 ) {
-    private val userInfoRepository = UserInfoRepository()
 
-    fun getPosts(): AsyncOperation<Result<List<PostModel>, PostError>> {
-        val bannedUsers = userInfoRepository.getBannedUsers()
-        val warnedUsers = userInfoRepository.getWarnedUsers()
-
-
-        val getAsync = multithreading.async<Result<PostsWithUserInfo, PostError>> {
-            val posts = postsService.getPosts().execute().body() ?: return@async Result.error(
-                PostError.POSTS_NOT_LOADED
-            )
-
-            return@async Result.success(
-                PostsWithUserInfo(posts = posts, bannedUsers = bannedUsers, warnedUsers = warnedUsers)
-            )
+    fun getPosts(): List<PostModel> {
+        if (postListDao.countPosts() == 0) {
+            val posts = postsService.getPosts().execute().body() ?: listOf()
+            postListDao.storePosts(*posts.toTypedArray())
         }
 
-        return getAsync.map(postMapper::map)
+        return postMapper.map(postListDao.getPosts())
+    }
+
+    fun createNewPost(title: String, body: String) {
+        val lastPostId = postListDao.getPosts().maxByOrNull(Post::id)?.id ?: PostListDao.startingIndex
+
+        postListDao.storePosts(
+            Post(
+                userId,
+                lastPostId + 1,
+                title,
+                body
+            )
+        )
+    }
+
+    companion object {
+        private const val userId = 11
     }
 }
