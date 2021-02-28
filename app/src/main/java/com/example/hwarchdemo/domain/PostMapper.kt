@@ -10,14 +10,9 @@ enum class UserStatus {
 }
 
 class PostMapper @Inject constructor() {
-    fun map(postList: List<Post>?): List<PostModel> {
-        return if (!postList.isNullOrEmpty()) {
-            postList.map { post ->
-                PostModel(post.userId, post.id, post.title, post.body, UserStatus.NONE)
-            }
-        } else {
-            emptyList()
+    fun map(postList: List<Post>): List<PostModel> {
+        return postList.map { post ->
+            PostModel(post.userId, post.id, post.title, post.body, UserStatus.NONE)
         }
     }
-
 }

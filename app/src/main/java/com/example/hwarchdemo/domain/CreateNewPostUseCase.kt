@@ -1,10 +1,11 @@
 package com.example.hwarchdemo.domain
 
 import com.example.hwarchdemo.data.PostsRepository
+import io.reactivex.Single
 import javax.inject.Inject
 
 class CreateNewPostUseCase @Inject constructor(private val postsRepository: PostsRepository) {
-    fun execute(title: String, body: String): Boolean {
+    fun execute(title: String, body: String): Single<Boolean> {
         if (title.length in MIN_TITLE_LENGTH..MAX_TITLE_LENGTH &&
             body.length in MIN_BODY_LENGTH..MAX_BODY_LENGTH
         ) {
@@ -12,11 +13,12 @@ class CreateNewPostUseCase @Inject constructor(private val postsRepository: Post
                     title.contains(it, true)
                 }
             ) {
-                postsRepository.createNewPost(title, body)
-                return true
+                return postsRepository.createNewPost(title, body).andThen(
+                    Single.just(true)
+                )
             }
         }
-        return false
+        return Single.just(false)
     }
 
     companion object {

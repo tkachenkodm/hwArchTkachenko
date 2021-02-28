@@ -13,11 +13,14 @@ import com.example.hwarchdemo.databinding.CreatePostFragmentBinding
 import com.example.hwarchdemo.domain.PostModel
 import com.example.hwarchdemo.domain.UserStatus
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 @AndroidEntryPoint
 class PostCreationFragment() : Fragment() {
     private val viewModel: PostListViewModel by activityViewModels()
     private lateinit var binding: CreatePostFragmentBinding
+    private val disposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,14 +47,19 @@ class PostCreationFragment() : Fragment() {
         val title = binding.etPostTitle.text.trim().toString()
         val body = binding.etPostBody.text.trim().toString()
 
-        viewModel.createNewPost(title, body) { postResult ->
+        disposable.add(viewModel.createNewPost(title, body).subscribe { postResult: Boolean ->
             if (postResult) {
                 parentFragmentManager.popBackStack()
             } else {
                 Toast.makeText(activity, getString(R.string.post_not_valid), Toast.LENGTH_SHORT)
                     .show()
             }
-        }
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.dispose()
     }
 
     companion object {

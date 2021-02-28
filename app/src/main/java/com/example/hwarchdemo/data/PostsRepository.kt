@@ -1,7 +1,10 @@
 package com.example.hwarchdemo.data
 
+import android.util.Log
 import com.example.hwarchdemo.domain.PostMapper
 import com.example.hwarchdemo.domain.PostModel
+import io.reactivex.*
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class PostsRepository @Inject constructor(
@@ -10,26 +13,33 @@ class PostsRepository @Inject constructor(
     private val postMapper: PostMapper
 ) {
 
-    fun getPosts(): List<PostModel> {
-        if (postListDao.countPosts() == 0) {
-            val posts = postsService.getPosts().execute().body() ?: listOf()
-            postListDao.storePosts(*posts.toTypedArray())
+    fun getPosts(): Observable<List<PostModel>> {
+        return postListDao.countPosts().flatMapObservable { count ->
+            if (count == 0) {
+                postsService.getPosts().flatMapObservable { posts ->
+                    postListDao.storePosts(*posts.toTypedArray()).andThen(
+                        postListDao.getPosts().map(postMapper::map)
+                    )
+                }
+            } else {
+                postListDao.getPosts().map(postMapper::map)
+            }
         }
 
-        return postMapper.map(postListDao.getPosts())
     }
 
-    fun createNewPost(title: String, body: String) {
-        val lastPostId = postListDao.getPosts().maxByOrNull(Post::id)?.id ?: PostListDao.startingIndex
-
-        postListDao.storePosts(
-            Post(
-                userId,
-                lastPostId + 1,
-                title,
-                body
+    fun createNewPost(title: String, body: String): Completable {
+        return postListDao.countPosts().flatMapCompletable { lastPostId ->
+            postListDao.storePosts(
+                Post(
+                    userId,
+                    lastPostId + 1,
+                    title,
+                    body
+                )
             )
-        )
+        }
+
     }
 
     companion object {

@@ -12,6 +12,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -34,16 +35,25 @@ class AppModule() {
     }
 
     @Provides
-    fun providePostsService(gsonConverterFactory: GsonConverterFactory): PostsService {
+    fun providePostsService(
+        gsonConverterFactory: GsonConverterFactory,
+        callAdapterFactory: RxJava2CallAdapterFactory
+    ): PostsService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addCallAdapterFactory(callAdapterFactory)
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(PostsService::class.java)
     }
 
     @Provides
-    fun provideGsonConverterFactory() : GsonConverterFactory {
+    fun provideCallAdapterFactory(): RxJava2CallAdapterFactory {
+        return RxJava2CallAdapterFactory.create()
+    }
+
+    @Provides
+    fun provideGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create(
             GsonBuilder().setLenient().create()
         )

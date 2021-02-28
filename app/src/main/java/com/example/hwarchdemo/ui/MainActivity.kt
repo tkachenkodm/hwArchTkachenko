@@ -2,6 +2,7 @@ package com.example.hwarchdemo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -19,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: PostAdapter
 
+    private val disposable = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         setAdapter()
         setClickListeners()
         subscribeToLiveData()
-        viewModel.getPosts()
     }
 
     private fun setClickListeners() {
@@ -49,9 +55,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeToLiveData() {
-        viewModel.postsLiveData.observe(this, {
+
+        disposable.add(viewModel.getPosts().subscribe {
             adapter.updateList(it)
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.dispose()
     }
 
 }
