@@ -4,7 +4,7 @@ import com.example.hwarchdemo.data.PostsRepository
 import javax.inject.Inject
 
 class CreateNewPostUseCase @Inject constructor(private val postsRepository: PostsRepository) {
-    fun execute(title: String, body: String): Boolean {
+    suspend fun execute(title: String, body: String): Boolean {
         if (title.length in MIN_TITLE_LENGTH..MAX_TITLE_LENGTH &&
             body.length in MIN_BODY_LENGTH..MAX_BODY_LENGTH
         ) {

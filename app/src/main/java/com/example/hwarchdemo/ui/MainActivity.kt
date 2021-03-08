@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setAdapter()
         setClickListeners()
         subscribeToLiveData()
-        viewModel.getPosts()
     }
 
     private fun setClickListeners() {
