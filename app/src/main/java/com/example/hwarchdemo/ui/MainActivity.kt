@@ -2,12 +2,9 @@ package com.example.hwarchdemo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.databinding.DataBindingUtil
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint

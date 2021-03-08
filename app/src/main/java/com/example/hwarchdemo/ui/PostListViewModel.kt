@@ -5,13 +5,12 @@ import com.example.hwarchdemo.domain.CreateNewPostUseCase
 import com.example.hwarchdemo.domain.GetPostsUseCase
 import com.example.hwarchdemo.presentation.PostUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PostListViewModel @Inject constructor(
-    private val getPostsUseCase: GetPostsUseCase,
+    getPostsUseCase: GetPostsUseCase,
     private val createNewPostUseCase: CreateNewPostUseCase
 ) : ViewModel() {
 

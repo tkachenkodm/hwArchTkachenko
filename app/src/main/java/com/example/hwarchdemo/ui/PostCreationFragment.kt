@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.CreatePostFragmentBinding
-import com.example.hwarchdemo.domain.PostModel
-import com.example.hwarchdemo.domain.UserStatus
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
