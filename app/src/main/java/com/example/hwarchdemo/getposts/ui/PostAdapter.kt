@@ -9,7 +9,7 @@ import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.PostBannedBinding
 import com.example.hwarchdemo.databinding.PostRegularBinding
 
-class PostAdapter() :
+class PostAdapter :
     ListAdapter<PostUiModel, RecyclerView.ViewHolder>(PostDiffUtils) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

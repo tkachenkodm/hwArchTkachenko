@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.example.hwarchdemo.createpost.domain.CreateNewPostUseCase
 import com.example.hwarchdemo.getposts.domain.GetPostsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,6 +14,7 @@ class PostListViewModel @Inject constructor(
     private val createNewPostUseCase: CreateNewPostUseCase
 ) : ViewModel() {
 
+    @FlowPreview
     val postsLiveData: LiveData<List<PostUiModel>> =
         getPostsUseCase.execute().asLiveData(viewModelScope.coroutineContext)
 

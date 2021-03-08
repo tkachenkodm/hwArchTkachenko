@@ -11,6 +11,4 @@ data class Post(
     val title: String,
     val body: String,
     val createdAt: String? = Date().toString()
-) {
-
-}
+)

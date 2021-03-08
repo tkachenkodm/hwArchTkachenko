@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.ui
+package com.example.hwarchdemo.utils
 
 import android.widget.TextView
 import androidx.cardview.widget.CardView

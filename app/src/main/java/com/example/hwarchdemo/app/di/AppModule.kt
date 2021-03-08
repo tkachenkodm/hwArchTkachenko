@@ -19,7 +19,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class AppModule() {
+class AppModule {
     companion object {
         private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
     }
