@@ -1,4 +1,4 @@
-package com.example.hwarchdemo
+package com.example.hwarchdemo.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

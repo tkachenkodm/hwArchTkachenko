@@ -4,9 +4,9 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.example.hwarchdemo.R
-import com.example.hwarchdemo.presentation.PostBanned
-import com.example.hwarchdemo.presentation.PostRegular
-import com.example.hwarchdemo.presentation.PostUiModel
+import com.example.hwarchdemo.getposts.ui.PostBanned
+import com.example.hwarchdemo.getposts.ui.PostRegular
+import com.example.hwarchdemo.getposts.ui.PostUiModel
 
 @BindingAdapter("app:postTitleFromModel")
 fun postTitleFromModel(view: TextView, post: PostUiModel) {

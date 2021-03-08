@@ -1,7 +1,7 @@
-package com.example.hwarchdemo.presentation
+package com.example.hwarchdemo.getposts.ui
 
-import com.example.hwarchdemo.domain.PostModel
-import com.example.hwarchdemo.domain.UserStatus
+import com.example.hwarchdemo.getposts.domain.PostModel
+import com.example.hwarchdemo.getposts.domain.UserStatus
 import javax.inject.Inject
 
 class PostUiMapper @Inject constructor() {

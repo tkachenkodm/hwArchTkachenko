@@ -1,5 +1,6 @@
-package com.example.hwarchdemo.data
+package com.example.hwarchdemo.getposts.data
 
+import com.example.hwarchdemo.app.data.Post
 import retrofit2.http.GET
 
 interface PostsService {

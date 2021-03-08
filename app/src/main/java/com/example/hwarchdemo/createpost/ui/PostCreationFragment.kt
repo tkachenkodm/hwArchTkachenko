@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.ui
+package com.example.hwarchdemo.createpost.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.CreatePostFragmentBinding
+import com.example.hwarchdemo.getposts.ui.PostListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

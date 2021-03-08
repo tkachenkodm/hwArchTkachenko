@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.ui
+package com.example.hwarchdemo.getposts.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.activity.viewModels
 import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.ActivityMainBinding
+import com.example.hwarchdemo.createpost.ui.PostCreationFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,7 +1,7 @@
-package com.example.hwarchdemo.domain
+package com.example.hwarchdemo.getposts.domain
 
-import com.example.hwarchdemo.data.Post
-import com.example.hwarchdemo.data.UserInfoRepository
+import com.example.hwarchdemo.app.data.Post
+import com.example.hwarchdemo.getposts.data.UserInfoRepository
 import javax.inject.Inject
 
 enum class UserStatus {

@@ -1,7 +1,8 @@
-package com.example.hwarchdemo.data
+package com.example.hwarchdemo.app.data
 
-import com.example.hwarchdemo.domain.PostMapper
-import com.example.hwarchdemo.domain.PostModel
+import com.example.hwarchdemo.getposts.data.PostsService
+import com.example.hwarchdemo.getposts.domain.PostMapper
+import com.example.hwarchdemo.getposts.domain.PostModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*

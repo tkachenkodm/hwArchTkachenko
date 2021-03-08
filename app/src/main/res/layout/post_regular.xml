@@ -6,7 +6,7 @@
 
         <variable
             name="regularPost"
-            type="com.example.hwarchdemo.presentation.PostRegular" />
+            type="com.example.hwarchdemo.getposts.ui.PostRegular" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

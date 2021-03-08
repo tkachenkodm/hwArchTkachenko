@@ -11,4 +11,7 @@
     <string name="enter_message">Enter message</string>
     <string name="post_not_valid">Post is not valid</string>
     <string name="create_new_post">Create new post</string>
+    <string name="ad_word">реклама</string>
+    <string name="item_word">товар</string>
+    <string name="buy_word">куплю</string>
 </resources>

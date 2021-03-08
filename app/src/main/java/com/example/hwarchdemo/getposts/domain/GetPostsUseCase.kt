@@ -1,8 +1,8 @@
-package com.example.hwarchdemo.domain
+package com.example.hwarchdemo.getposts.domain
 
-import com.example.hwarchdemo.data.PostsRepository
-import com.example.hwarchdemo.presentation.PostUiMapper
-import com.example.hwarchdemo.presentation.PostUiModel
+import com.example.hwarchdemo.app.data.PostsRepository
+import com.example.hwarchdemo.getposts.ui.PostUiMapper
+import com.example.hwarchdemo.getposts.ui.PostUiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

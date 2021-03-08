@@ -1,9 +1,8 @@
-package com.example.hwarchdemo.ui
+package com.example.hwarchdemo.getposts.ui
 
 import androidx.lifecycle.*
-import com.example.hwarchdemo.domain.CreateNewPostUseCase
-import com.example.hwarchdemo.domain.GetPostsUseCase
-import com.example.hwarchdemo.presentation.PostUiModel
+import com.example.hwarchdemo.createpost.domain.CreateNewPostUseCase
+import com.example.hwarchdemo.getposts.domain.GetPostsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

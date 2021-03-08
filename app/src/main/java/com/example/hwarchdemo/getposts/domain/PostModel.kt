@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.domain
+package com.example.hwarchdemo.getposts.domain
 
 data class PostModel(
     val userId: Int,

@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.ui
+package com.example.hwarchdemo.getposts.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.PostBannedBinding
 import com.example.hwarchdemo.databinding.PostRegularBinding
-import com.example.hwarchdemo.presentation.*
 
 class PostAdapter() :
     ListAdapter<PostUiModel, RecyclerView.ViewHolder>(PostDiffUtils) {

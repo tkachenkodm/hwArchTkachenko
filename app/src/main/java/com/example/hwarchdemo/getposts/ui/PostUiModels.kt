@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.presentation
+package com.example.hwarchdemo.getposts.ui
 
 sealed class PostUiModel(val userId: Int, val id: Int)
 

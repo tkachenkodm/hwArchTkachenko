@@ -1,10 +1,10 @@
-package com.example.hwarchdemo.di
+package com.example.hwarchdemo.app.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.hwarchdemo.data.AppDatabase
-import com.example.hwarchdemo.data.PostListDao
-import com.example.hwarchdemo.data.PostsService
+import com.example.hwarchdemo.app.data.AppDatabase
+import com.example.hwarchdemo.app.data.PostListDao
+import com.example.hwarchdemo.getposts.data.PostsService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

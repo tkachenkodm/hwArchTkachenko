@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.data
+package com.example.hwarchdemo.app.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

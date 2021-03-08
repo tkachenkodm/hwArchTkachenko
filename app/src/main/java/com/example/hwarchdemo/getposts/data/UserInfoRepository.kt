@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.data
+package com.example.hwarchdemo.getposts.data
 
 import javax.inject.Inject
 

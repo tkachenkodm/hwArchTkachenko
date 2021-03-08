@@ -1,4 +1,4 @@
-package com.example.hwarchdemo.data
+package com.example.hwarchdemo.app.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
