@@ -1,22 +1,22 @@
 name: CI
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
-  jobs:
-    test:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: action/checkout@v2
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v2
 
-        - name: Run tests
-          run: ./gradlew app:test
-    lint:
-      runs-on: ubuntu-latest
+      - name: Run tests
+        run: ./gradlew app:test
+  lint:
+    runs-on: ubuntu-latest
 
-      steps:
-        - uses: action/checkout@v2
+    steps:
+      - uses: action/checkout@v2
 
-        - name: Run linter
-          run: ./gradlew app:detekt
+      - name: Run linter
+        run: ./gradlew app:detekt
