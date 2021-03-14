@@ -27,6 +27,7 @@ internal class PostUiMapperTest {
                 generateRandomTestString(15),
                 UserStatus.NONE
             ) to false,
+
             PostModel(
                 generateRandomTestInt(),
                 generateRandomTestInt(),

@@ -19,12 +19,13 @@ internal class CreateNewPostUseCaseTest {
     @TestFactory
     fun `post verification works as intended`(): List<DynamicTest> {
         val mockPostsRepository = mockk<PostsRepository>(relaxed = true)
-        val mockForbiddenWordsRepository = mockk<ForbiddenWordsRepository>()
-        val forbiddenWord = generateRandomTestString(12)
 
-        every {
-            mockForbiddenWordsRepository.getForbiddenWords()
-        } returns listOf(forbiddenWord)
+        val forbiddenWord = generateRandomTestString(12)
+        val mockForbiddenWordsRepository = mockk<ForbiddenWordsRepository>() {
+            every {
+                getForbiddenWords()
+            } returns listOf(forbiddenWord)
+        }
 
         val createNewPostUseCase =
             CreateNewPostUseCase(mockPostsRepository, mockForbiddenWordsRepository)

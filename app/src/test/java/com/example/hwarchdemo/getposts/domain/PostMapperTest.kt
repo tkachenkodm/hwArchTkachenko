@@ -17,17 +17,16 @@ internal class PostMapperTest {
 
     @TestFactory
     fun `postMapper works as intended`(): List<DynamicTest> {
-        val mockUserInfoRepository = mockk<UserInfoRepository>()
         val bannedUser = generateRandomTestInt()
         val warnedUser = generateRandomTestInt()
-
-        every {
-            mockUserInfoRepository.getBannedUsers()
-        } returns listOf(bannedUser)
-
-        every {
-            mockUserInfoRepository.getWarnedUsers()
-        } returns listOf(warnedUser)
+        val mockUserInfoRepository = mockk<UserInfoRepository>() {
+            every {
+                getBannedUsers()
+            } returns listOf(bannedUser)
+            every {
+                getWarnedUsers()
+            } returns listOf(warnedUser)
+        }
 
         val postMapper = PostMapper(mockUserInfoRepository)
 

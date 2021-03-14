@@ -19,17 +19,17 @@ internal class PostsRepositoryTest {
 
     @Test
     fun `downloaded posts are cached on first app launch`() {
-        val mockPostListDao = mockk<PostListDao>(relaxed = true)
-        val mockPostsService = mockk<PostsService>(relaxed = true)
+        val mockPostListDao = mockk<PostListDao>(relaxed = true) {
+            every {
+                countPosts()
+            } returns 0
+        }
+        val mockPostsService = mockk<PostsService>(relaxed = true) {
+            coEvery {
+                getPosts()
+            } returns listOf()
+        }
         val mockPostMapper = mockk<PostMapper>(relaxed = true)
-
-        every {
-            mockPostListDao.countPosts()
-        } returns 0
-
-        coEvery {
-            mockPostsService.getPosts()
-        } returns listOf()
 
         val postsRepository =
             PostsRepository(mockPostListDao, mockPostsService, mockPostMapper, testDispatcher)
@@ -48,17 +48,17 @@ internal class PostsRepositoryTest {
 
     @Test
     fun `posts are not re-downloaded on subsequent launches`() {
-        val mockPostListDao = mockk<PostListDao>(relaxed = true)
-        val mockPostsService = mockk<PostsService>(relaxed = true)
+        val mockPostListDao = mockk<PostListDao>(relaxed = true) {
+            every {
+                countPosts()
+            } returns 1
+        }
+        val mockPostsService = mockk<PostsService>(relaxed = true) {
+            coEvery {
+                getPosts()
+            } returns listOf()
+        }
         val mockPostMapper = mockk<PostMapper>(relaxed = true)
-
-        every {
-            mockPostListDao.countPosts()
-        } returns 1
-
-        coEvery {
-            mockPostsService.getPosts()
-        } returns listOf()
 
         val postsRepository =
             PostsRepository(mockPostListDao, mockPostsService, mockPostMapper, testDispatcher)

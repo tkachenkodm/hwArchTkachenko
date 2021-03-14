@@ -1,6 +1,5 @@
 package com.example.hwarchdemo.getposts.data
 
-import androidx.room.Ignore
 import javax.inject.Inject
 
 @Suppress("MagicNumber")
