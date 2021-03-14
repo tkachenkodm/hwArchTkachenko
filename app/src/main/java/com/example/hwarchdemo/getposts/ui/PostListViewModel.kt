@@ -1,3 +1,4 @@
+@file:Suppress("WildcardImport")
 package com.example.hwarchdemo.getposts.ui
 
 import androidx.lifecycle.*

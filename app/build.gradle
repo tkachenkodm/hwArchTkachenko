@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id("io.gitlab.arturbosch.detekt").version("1.15.0")
 }
 
 android {
@@ -67,7 +68,10 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.31.2-alpha'
     kapt 'com.google.dagger:hilt-android-compiler:2.31.2-alpha'
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.4.2'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'io.mockk:mockk:1.10.0'
 }

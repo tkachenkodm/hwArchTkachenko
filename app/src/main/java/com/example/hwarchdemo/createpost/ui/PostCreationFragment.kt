@@ -14,7 +14,7 @@ import com.example.hwarchdemo.getposts.ui.PostListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PostCreationFragment() : Fragment() {
+class PostCreationFragment : Fragment() {
     private val viewModel: PostListViewModel by activityViewModels()
     private lateinit var binding: CreatePostFragmentBinding
 

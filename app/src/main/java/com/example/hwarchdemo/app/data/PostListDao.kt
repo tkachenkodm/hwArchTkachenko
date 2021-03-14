@@ -17,4 +17,7 @@ interface PostListDao {
     @Insert
     fun storePosts(vararg posts: Post)
 
+    @Insert
+    fun storePosts(posts: List<Post>)
+
 }

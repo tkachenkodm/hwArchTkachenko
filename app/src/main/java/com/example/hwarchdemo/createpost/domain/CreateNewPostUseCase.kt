@@ -11,8 +11,8 @@ class CreateNewPostUseCase @Inject constructor(
     suspend fun execute(title: String, body: String): Boolean {
         val forbiddenWords = forbiddenWordsRepository.getForbiddenWords()
 
-        if (title.length in MIN_TITLE_LENGTH..MAX_TITLE_LENGTH &&
-            body.length in MIN_BODY_LENGTH..MAX_BODY_LENGTH
+        if (title.trim().length in MIN_TITLE_LENGTH..MAX_TITLE_LENGTH &&
+            body.trim().length in MIN_BODY_LENGTH..MAX_BODY_LENGTH
         ) {
             if (!forbiddenWords.any {
                     title.contains(it, true)

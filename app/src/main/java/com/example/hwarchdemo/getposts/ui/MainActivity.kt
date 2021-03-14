@@ -9,7 +9,9 @@ import com.example.hwarchdemo.R
 import com.example.hwarchdemo.databinding.ActivityMainBinding
 import com.example.hwarchdemo.createpost.ui.PostCreationFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 
+@FlowPreview
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvPosts.adapter = adapter
         binding.rvPosts.layoutManager = LinearLayoutManager(this)
     }
-
+    
     private fun subscribeToLiveData() {
         viewModel.postsLiveData.observe(this, {
             adapter.updateList(it)

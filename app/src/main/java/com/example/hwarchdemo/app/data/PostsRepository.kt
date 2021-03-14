@@ -1,3 +1,4 @@
+@file:Suppress("WildcardImport")
 package com.example.hwarchdemo.app.data
 
 import com.example.hwarchdemo.getposts.data.PostsService
@@ -23,7 +24,7 @@ class PostsRepository @Inject constructor(
         }.flatMapConcat { count ->
             if (count == 0) {
                 val posts = postsService.getPosts()
-                postListDao.storePosts(*posts.toTypedArray())
+                postListDao.storePosts(posts)
             }
             postListDao.getPosts()
         }.map {
