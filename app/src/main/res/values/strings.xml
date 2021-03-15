@@ -5,4 +5,13 @@
     <string name="regular_user_title">Post by User: %1d</string>
     <string name="post_title">Title: %1s</string>
     <string name="post_body">Body: %1s</string>
+    <string name="submit">Submit</string>
+    <string name="add_post">Add Post</string>
+    <string name="enter_title">Enter title</string>
+    <string name="enter_message">Enter message</string>
+    <string name="post_not_valid">Post is not valid</string>
+    <string name="create_new_post">Create new post</string>
+    <string name="ad_word">реклама</string>
+    <string name="item_word">товар</string>
+    <string name="buy_word">куплю</string>
 </resources>
