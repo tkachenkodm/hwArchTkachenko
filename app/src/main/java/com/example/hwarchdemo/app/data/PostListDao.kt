@@ -15,7 +15,7 @@ interface PostListDao {
     fun getPosts(): Flow<List<Post>>
 
     @Insert
-    fun storePosts(vararg posts: Post)
+    fun storePost(post: Post)
 
     @Insert
     fun storePosts(posts: List<Post>)

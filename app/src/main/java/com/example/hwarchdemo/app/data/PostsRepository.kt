@@ -34,7 +34,7 @@ class PostsRepository @Inject constructor(
 
     suspend fun createNewPost(title: String, body: String) =
         withContext(ioDispatcher) {
-            postListDao.storePosts(
+            postListDao.storePost(
                 Post(
                     userId,
                     postListDao.countPosts() + 1,

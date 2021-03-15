@@ -7,9 +7,6 @@ import com.example.hwarchdemo.testUtils.generateRandomTestString
 import io.kotlintest.shouldBe
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
@@ -57,6 +54,5 @@ internal class PostMapperTest {
             }
         }
     }
-
 
 }

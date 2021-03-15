@@ -5,11 +5,8 @@ import com.example.hwarchdemo.getposts.domain.UserStatus
 import com.example.hwarchdemo.testUtils.generateRandomTestInt
 import com.example.hwarchdemo.testUtils.generateRandomTestString
 import io.kotlintest.matchers.types.shouldBeInstanceOf
-import io.kotlintest.matchers.types.shouldNotBeSameInstanceAs
 import io.kotlintest.shouldBe
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 

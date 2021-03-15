@@ -10,7 +10,6 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
 
 @FlowPreview
 @ExperimentalCoroutinesApi
@@ -40,7 +39,7 @@ internal class PostsRepositoryTest {
 
         coVerifyOrder {
             mockPostsService.getPosts()
-            mockPostListDao.storePosts()
+            mockPostListDao.storePosts(any())
         }
 
         testDispatcher.cleanupTestCoroutines()
